@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './components/Header'
 import Todo from './components/Todo'
+import Modal from './components/Modal'
 import Context from './components/Context'
 
 function App() {
@@ -8,9 +9,9 @@ function App() {
     {id:1, completed: false, class: 'unchecked', value: 'Проснуться'},
     {id:2, completed: false, class: 'unchecked', value: 'Побриться'},
     {id:3, completed: false, class: 'unchecked', value: 'Купить молоко'},
-    {id:4, completed: false, class: 'unchecked', value: 'Не забыть забрать сына из садика'},
+    {id:4, completed: false, class: 'unchecked', value: 'Навестить друга'},
     {id:5, completed: false, class: 'unchecked', value: 'Купить сыр'},
-  ])
+  ]);
 
   function toogleTodo(id) {
     setTasks(
@@ -33,6 +34,7 @@ function App() {
     <div>
       <Header />
       <Todo />
+      <Modal />
     </div>
   </Context.Provider>
   )
