@@ -54,10 +54,11 @@ html {
   border-radius: 4px;
   border: none;
   padding: 4px 15px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
-.header__button:hover,
-.header__button:focus {
+.header__button:hover, .header__button:focus {
   outline: none;
   background-color: #23A3FF;
   color: white;

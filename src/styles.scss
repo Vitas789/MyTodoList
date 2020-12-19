@@ -45,13 +45,12 @@ html {
   border-radius: 4px;
   border: none;
   padding: 4px 15px;
-}
-
-.header__button:hover,
-.header__button:focus {
-  outline: none;
-  background-color: #23A3FF;
-  color: white;
+  transition: 0.3s;
+  &:hover, &:focus{
+    outline: none;
+    background-color: #23A3FF;
+    color: white;
+  }
 }
 
 .todo__list {
