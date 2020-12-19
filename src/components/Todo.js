@@ -15,7 +15,6 @@ function Todo(props) {
         <div className="todo__list">
           {taskAdd}
         </div>
-
       </div>
     </section>
   )
