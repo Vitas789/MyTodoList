@@ -21,10 +21,12 @@ function Modal({ onCreate }) {
 
   return(
     <section className="add-task">
+      <div className="wrapper">
         <button className="modal__button modal__button_add-task" onClick={() => changeClass()}>
           <span className="modal__first"></span>
           <span className="modal__second"></span>
         </button>
+      </div>
         <div className={className}>
           <form className="modal__form" name="forms">
             <input className="modal__input" type="text" placeholder="Введите текст задачи" value={value} onChange={event => setValue(event.target.value)}></input>
