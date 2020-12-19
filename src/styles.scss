@@ -119,6 +119,10 @@ html {
 }
 
 .modal__button{
+  border: 0;
+}
+
+.modal__button_add-task{
   position: absolute;
   right: 0;
   margin-top: calc(100vh - 35rem);
@@ -146,7 +150,7 @@ html {
   transform: rotate(90deg);
 }
 
-.modal__button:hover{
+.modal__button_add-task:hover{
   cursor: pointer;
   background-color:#23A3FF;
       span{
@@ -160,6 +164,41 @@ html {
 
 .modal_active{
   display: block;
-  height: 20px;
-  background-color: red;
+  position: fixed;
+  bottom: 0;
+  height: 150px;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  border-radius: 50px 50px 0 0;
 }
+
+.modal__form{
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+    button:hover{
+      
+    }
+}
+
+.modal__input{
+  width: 80%;
+}
+
+.modal__button_add{
+  background-color: #23A3FF;
+  width: 50px;
+  height: 50px;
+  border-radius: 60%;
+}
+
+.modal__button_close{
+  background-color:white;
+  width: 50px;
+  height: 50px;
+  border-radius: 60%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+

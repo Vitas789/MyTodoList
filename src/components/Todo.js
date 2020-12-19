@@ -1,6 +1,5 @@
 import React, {useContext} from 'react'
 import TodoList from './TodoList'
-import Modal from './Modal'
 import Context from './Context'
 
 

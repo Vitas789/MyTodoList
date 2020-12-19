@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-function Modal() {
+function Modal({ onCreate }) {
   const [className, setClass] = React.useState('modal');
-  console.log(className);
+  const [value, setValue] = React.useState('');
 
   function changeClass () {
     if (className === 'modal') {
@@ -12,19 +12,30 @@ function Modal() {
     }
   }
 
+  function submitHandler(event) {
+    if (value.trim()) {
+      onCreate(value);
+      setValue('');
+    }
+  }
+
   return(
     <section className="add-task">
-      <div className="wrapper">
-        <button className="modal__button" onClick={() => changeClass()}>
+        <button className="modal__button modal__button_add-task" onClick={() => changeClass()}>
           <span className="modal__first"></span>
           <span className="modal__second"></span>
         </button>
         <div className={className}>
-          <form>
-            <input></input>
+          <form className="modal__form" name="forms">
+            <input className="modal__input" type="text" placeholder="Введите текст задачи" value={value} onChange={event => setValue(event.target.value)}></input>
+            <button className="modal__button modal__button_add" type="button" onClick={submitHandler}>
+              <img src='arrow.png' alt='booba' width='20px'></img>
+            </button>
+            <button className="modal__button modal__button_close" type="button" onClick={() => setClass('modal')}>
+            <img src='cross.png' alt='booba' width='20px'></img>
+            </button>
           </form>
-        </div> 
-      </div>   
+        </div>  
     </section>
   );
 }

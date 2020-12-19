@@ -29,12 +29,20 @@ function App() {
   //   setTasks(tasks.filter(task => task.id !== id))
   // }
 
+  function addTask(value) {
+    setTasks(tasks.concat([{
+      value,
+      id: Date.now(),
+      completed: false,
+    }]))
+  }
+
   return (
-  <Context.Provider value={{tasks, toogleTodo}}>
+  <Context.Provider value={{tasks, toogleTodo, addTask}}>
     <div>
       <Header />
       <Todo />
-      <Modal />
+      <Modal onCreate={addTask} />
     </div>
   </Context.Provider>
   )
