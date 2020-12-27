@@ -1,12 +1,66 @@
-import React from 'react'
+import React from "react";
+import { Transition } from "react-transition-group";
+import Context from "./Context";
 
 function TodoList(props) {
-  return(
-  <label className="todo__label" htmlFor={props.id}> 
-    <input className="todo__input" type="checkbox" id={props.id} onChange={() => props.onClick(props.id)} />                 
-    <span className={"todo__task " + props.class}>{props.value}</span>
-  </label>
-  )
+  const [formIsVisible, setVisible] = React.useState(false);
+  const [value, setValue] = React.useState("");
+  const { editTask } = React.useContext(Context);
+
+  return (
+    <label className="todo__label" htmlFor={props.id}>
+      <input
+        className="todo__checkbox"
+        type="checkbox"
+        id={props.id}
+        onChange={() => props.onClick(props.id)}
+      />
+      <span className={"todo__task " + props.class}>{props.value}</span>
+      <button className="todo__button todo__button_delete" onClick={() => props.remove(props.id)}>
+        <img src="delete.png" alt="delete task" width="20px"></img>
+      </button>
+      <button
+        className="todo__button todo__button_edit"
+        type="button"
+        onClick={() => setVisible(true)}
+      >
+        <img src="change.png" alt="change task" width="20px"></img>
+      </button>
+      <Transition in={formIsVisible} timeout={500} mountOnEnter unmountOnExit>
+        {(state) => (
+          <div className={`todo__modal ${state}`}>
+            <form className="todo__form">
+              <input
+                className="todo__input"
+                type="text"
+                placeholder={props.value}
+                onChange={(event) => setValue(event.target.value)}
+              ></input>
+              <div className="todo__buttons">
+                <button
+                  className="todo__button todo__button_change"
+                  type="button"
+                  onClick={() => {
+                    editTask(props.id, value);
+                    setVisible(false);
+                  }}
+                >
+                  Изменить
+                </button>
+                <button
+                  className="todo__button todo__button_close"
+                  type="button"
+                  onClick={() => setVisible(false)}
+                >
+                  Отмена
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+      </Transition>
+    </label>
+  );
 }
 
 export default TodoList;

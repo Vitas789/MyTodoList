@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('./img/back.jpg');
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
@@ -22,13 +23,14 @@ html {
   position: relative;
 }
 
-.header__content {
-  padding: 60px 0px 0px 0px;
+.header{
   display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 auto 45px;
+  justify-content: flex-start;
+  align-items: flex-end;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  height: 20vh;
 }
 
 .header__title {
@@ -36,6 +38,7 @@ html {
   font-weight: 900;
   font-size: 28px;
   line-height: 41px;
+  color: white;
 }
 
 .header__button {
@@ -53,11 +56,19 @@ html {
   }
 }
 
+.todo{
+  width: 100vw;
+  height: calc(100vh - 20vh);
+  background-color: rgba(0,0,0,0.7);
+}
+
 .todo__list {
   position: relative;
   display: flex;
   flex-flow: column nowrap;
   max-width: 1280px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .todo__item {
@@ -71,15 +82,29 @@ html {
 }
 
 .todo__label {
-  margin-bottom: 30px;
+  position: relative;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 50px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-.todo__input {
+.todo__label:last-child{
+  margin-bottom: 0;
+}
+
+.todo__checkbox {
   opacity: 0;
   width: 22px;
   height: 22px;
   position: absolute;
   z-index: 1;
+}
+
+.todo__menu{
+  display: flex;
+  padding-left: 50px;
+  flex-flow: column nowrap;
 }
 
 .todo__task {
@@ -90,7 +115,7 @@ html {
   letter-spacing: 0.01em;
   padding-left: 36px;
   line-height: 1.5;
-  color:black;
+  color: white;
 }
 
 .todo__task:hover {
@@ -108,8 +133,81 @@ html {
   position: absolute;
 }
 
-.todo__input:checked + .todo__task::before {
+.todo__checkbox:checked + .todo__task::before {
   background: url("img/check.svg") no-repeat center;
+}
+
+.todo__button_delete{
+  position: absolute;
+  right: 0;
+  border-radius: 15px;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  &:hover{
+    background-color: rgba(214, 36, 36, 0.7);;
+  }
+}
+
+.todo__button_edit{
+  position: absolute;
+  right: 60px;
+  border-radius: 15px;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  &:hover{
+    background-color: rgba(35, 163, 255, 0.6);
+  }
+}
+
+.todo__modal{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.todo__form{
+  display: flex;
+  justify-content: space-around;
+}
+
+.todo__input{
+  width: calc(100vw - 70vw);
+  height: 30px;
+  margin-right: 20px;
+  background-color:white;
+  color:black;
+  border-radius: 15px;
+  border: 2px solid white;
+  padding-left: 20px;
+  &:hover, &:active, &:focus{
+    border-color: #23A3FF;
+  }
+}
+
+.todo__buttons{
+  display: flex;
+  width: (100 - 90vw);
+  justify-content: space-around;
+}
+
+.todo__button{
+  border: 0;
+}
+
+.todo__button_change{
+  background-color: rgba(35, 163, 255, 0.6);
+  color: white;
+  border-radius: 5px;
+}
+
+.todo__button_close{
+  border-radius: 5px;
 }
 
 .checked{
@@ -122,11 +220,11 @@ html {
 }
 
 .modal__button_add-task{
-  position: fixed;
-  right: calc(100vw - 83vw);
-  top: calc(100vh - 25vh);
-  background-color:white;
-  border: 1px solid white;
+  position: absolute;
+  right: 0;
+  top: -10vh;
+  background-color: rgba(0,0,0,0.0);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   width: 60px;
   height: 60px;
   border-radius: 100%;
@@ -135,7 +233,7 @@ html {
   &:hover{
     transform: rotate(360deg);
     cursor: pointer;
-    background-color:#23A3FF;
+    background-color:rgba(35, 163, 255, 0.6);
         span{
             background-color: white;
         }
@@ -159,12 +257,6 @@ html {
 }
 
 .modal{
-  display: none;
-  transition-delay: 0.6s;
-  opacity: 0;
-}
-
-.modal_active{
   display: block;
   position: fixed;
   bottom: 0;
@@ -173,8 +265,6 @@ html {
   background-color: white;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   border-radius: 50px 50px 0 0;
-  opacity: 1;
-
 }
 
 .modal__form{
@@ -217,3 +307,40 @@ html {
   }
 }
 
+
+@keyframes show-modal{
+  0%{
+    opacity: 0;
+    transform: translateY(200%);
+  }
+
+  50%{
+    
+  }
+
+  100%{
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal.entering {
+  animation: show-modal .5s forwards;
+}
+
+.modal.exiting {
+  animation: show-modal .5s reverse;
+}
+
+
+.todo_edit-win.entering {
+  animation: show-modal .5s forwards;
+}
+
+.todo_edit-win.exiting {
+  animation: show-modal .5s reverse;
+}
+
+.todo_edit-win.exited{
+  opacity: 0;
+}
