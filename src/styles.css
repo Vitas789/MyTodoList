@@ -383,6 +383,36 @@ html {
   }
 }
 
+@-webkit-keyframes show-form {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-200%);
+            transform: translateX(-200%);
+  }
+  50% {
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes show-form {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-200%);
+            transform: translateX(-200%);
+  }
+  50% {
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .modal.entering {
   -webkit-animation: show-modal .5s forwards;
           animation: show-modal .5s forwards;
@@ -393,12 +423,12 @@ html {
 }
 
 .todo__modal.entering {
-  -webkit-animation: show-modal .5s forwards;
-          animation: show-modal .5s forwards;
+  -webkit-animation: show-form .5s forwards;
+          animation: show-form .5s forwards;
 }
 
 .todo__modal.exiting {
-  animation: show-modal .5s reverse;
+  animation: show-form .5s reverse;
 }
 
 .todo__modal.exited {
