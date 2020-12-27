@@ -39,14 +39,14 @@ function Modal({ onCreate }) {
                 type="button"
                 onClick={submitHandler}
               >
-                <img src="arrow.png" alt="booba" width="20px"></img>
+                <img src="arrow.png" alt="add task" width="20px"></img>
               </button>
               <button
                 className="modal__button modal__button_close"
                 type="button"
                 onClick={() => setVisible(false)}
               >
-                <img src="cross.png" alt="booba" width="20px"></img>
+                <img src="cross.png" alt="close window" width="20px"></img>
               </button>
             </form>
           </div>

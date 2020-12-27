@@ -392,16 +392,16 @@ html {
   animation: show-modal .5s reverse;
 }
 
-.todo_edit-win.entering {
+.todo__modal.entering {
   -webkit-animation: show-modal .5s forwards;
           animation: show-modal .5s forwards;
 }
 
-.todo_edit-win.exiting {
+.todo__modal.exiting {
   animation: show-modal .5s reverse;
 }
 
-.todo_edit-win.exited {
+.todo__modal.exited {
   opacity: 0;
 }
 /*# sourceMappingURL=styles.css.map */
