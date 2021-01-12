@@ -29,7 +29,7 @@ function Header() {
       day = "Суббота";
       break;
     default:
-      day = "lol";
+      day = "";
       break;
   }
 
@@ -47,7 +47,7 @@ function Header() {
       month = "апреля";
       break;
     case 4:
-      month = "мае";
+      month = "мая";
       break;
     case 5:
       month = "июня";
@@ -71,7 +71,7 @@ function Header() {
       month = "декабря";
       break;
     default:
-      month = "lol";
+      month = "";
       break;
   }
 
