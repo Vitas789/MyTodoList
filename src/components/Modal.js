@@ -72,7 +72,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   addTask: (id) => {
     dispatch(addTask(id));
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);

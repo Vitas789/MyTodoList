@@ -1,7 +1,7 @@
 const removeTask = (id) => {
   return {
     type: "REMOVE_TASK",
-    id: id,
+    payload: id,
   };
 };
 

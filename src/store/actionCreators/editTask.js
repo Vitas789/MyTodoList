@@ -1,8 +1,10 @@
 const editTask = (value, id) => {
   return {
     type: "EDIT_TASK",
-    value: value,
-    id: id,
+    payload: {
+      value,
+      id,
+    }
   };
 };
 

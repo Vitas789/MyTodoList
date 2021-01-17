@@ -1,7 +1,7 @@
 const addTask = (value) => {
   return {
     type: "ADD_TASK",
-    value: value,
+    payload: value,
   };
 };
 
