@@ -5,6 +5,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: url("./img/back.jpg") top;
+  overflow-x: hidden;
 }
 
 html {

@@ -26,7 +26,7 @@ function Modal(props) {
               onSubmit={(e) => {
                 e.preventDefault();
                 if (value) {
-                  props.addNewTask(value);
+                  props.addTask(value);
                 }
                 setValue("");
               }}
@@ -43,7 +43,7 @@ function Modal(props) {
                 type="button"
                 onClick={() => {
                   if (value) {
-                    props.addNewTask(value);
+                    props.addTask(value);
                     setValue("");
                   }
                 }}
@@ -65,13 +65,14 @@ function Modal(props) {
   );
 }
 
-export default connect(
-  (state) => ({
-    state,
-  }),
-  (dispatch) => ({
-    addNewTask: (value) => {
-      dispatch(addTask(value));
-    },
-  })
-)(Modal);
+const mapStateToProps = (state) => ({
+  state,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addTask: (id) => {
+    dispatch(addTask(id));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);
