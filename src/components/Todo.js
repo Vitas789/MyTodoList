@@ -1,19 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import TodoList from "./TodoList";
-import Context from "./Context";
 
 function Todo(props) {
-  const { tasks, toogleTodo, removeTask } = useContext(Context);
-  const taskAdd = tasks.map((task) => {
+  const taskAdd = props.state.map((task) => {
     return (
       <TodoList
         value={task.value}
         key={task.id}
         id={task.id}
-        tasks={tasks}
-        onClick={toogleTodo}
+        tasks={props.state}
         class={task.class}
-        remove={removeTask}
       />
     );
   });
@@ -27,4 +24,8 @@ function Todo(props) {
   );
 }
 
-export default Todo;
+const mapStateToProps = (state) => ({
+  state,
+});
+
+export default connect(mapStateToProps)(Todo);

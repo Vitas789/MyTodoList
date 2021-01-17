@@ -1,16 +1,11 @@
 import React from "react";
 import { Transition } from "react-transition-group";
+import { connect } from "react-redux";
+import addTask from "../store/actionCreators/addTask";
 
-function Modal({ onCreate }) {
+function Modal(props) {
   const [modalIsVisible, setVisible] = React.useState(false);
   const [value, setValue] = React.useState("");
-
-  function submitHandler(event) {
-    if (value.trim()) {
-      onCreate(value);
-      setValue("");
-    }
-  }
 
   return (
     <section className="add-task">
@@ -26,7 +21,16 @@ function Modal({ onCreate }) {
       <Transition in={modalIsVisible} timeout={500} mountOnEnter unmountOnExit>
         {(state) => (
           <div className={`modal ${state}`}>
-            <form className="modal__form">
+            <form
+              className="modal__form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (value) {
+                  props.addNewTask(value);
+                }
+                setValue("");
+              }}
+            >
               <input
                 className="modal__input"
                 type="text"
@@ -37,7 +41,12 @@ function Modal({ onCreate }) {
               <button
                 className="modal__button modal__button_add"
                 type="button"
-                onClick={submitHandler}
+                onClick={() => {
+                  if (value) {
+                    props.addNewTask(value);
+                    setValue("");
+                  }
+                }}
               >
                 <img src="arrow.png" alt="add task" width="20px"></img>
               </button>
@@ -56,4 +65,13 @@ function Modal({ onCreate }) {
   );
 }
 
-export default Modal;
+export default connect(
+  (state) => ({
+    state,
+  }),
+  (dispatch) => ({
+    addNewTask: (value) => {
+      dispatch(addTask(value));
+    },
+  })
+)(Modal);

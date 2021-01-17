@@ -1,22 +1,27 @@
 import React from "react";
 import { Transition } from "react-transition-group";
-import Context from "./Context";
+import { connect } from "react-redux";
+import editTask from "../store/actionCreators/editTask";
+import toggleTodo from "../store/actionCreators/toggleTodo";
+import removeTask from "../store/actionCreators/removeTask";
 
 function TodoList(props) {
   const [formIsVisible, setVisible] = React.useState(false);
   const [value, setValue] = React.useState("");
-  const { editTask } = React.useContext(Context);
 
   return (
-    <label className="todo__label" htmlFor={props.id}>
+    <label className="todo__label" htmlFor={props.id} key={props.id}>
       <input
         className="todo__checkbox"
         type="checkbox"
         id={props.id}
-        onChange={() => props.onClick(props.id)}
+        onChange={() => props.toggleTodo(props.id)}
       />
       <span className={"todo__task " + props.class}>{props.value}</span>
-      <button className="todo__button todo__button_delete" onClick={() => props.remove(props.id)}>
+      <button
+        className="todo__button todo__button_delete"
+        onClick={() => props.removeTask(props.id)}
+      >
         <img src="delete.png" alt="delete task" width="20px"></img>
       </button>
       <button
@@ -29,7 +34,14 @@ function TodoList(props) {
       <Transition in={formIsVisible} timeout={500} mountOnEnter unmountOnExit>
         {(state) => (
           <div className={`todo__modal ${state}`}>
-            <form className="todo__form">
+            <form
+              className="todo__form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                props.editTask(value, props.id);
+                setVisible(false);
+              }}
+            >
               <input
                 className="todo__input"
                 type="text"
@@ -41,7 +53,7 @@ function TodoList(props) {
                   className="todo__button todo__button_change"
                   type="button"
                   onClick={() => {
-                    editTask(props.id, value);
+                    props.editTask(value, props.id);
                     setVisible(false);
                   }}
                 >
@@ -63,4 +75,20 @@ function TodoList(props) {
   );
 }
 
-export default TodoList;
+const mapStateToProps = (state) => ({
+  state,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleTodo: (id) => {
+    dispatch(toggleTodo(id));
+  },
+  editTask: (value, id) => {
+    dispatch(editTask(value, id));
+  },
+  removeTask: (id) => {
+    dispatch(removeTask(id));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
