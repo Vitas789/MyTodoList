@@ -20,10 +20,10 @@ function reducer(state, action) {
       return state.filter((task) => task.id !== action.payload);
 
     case "TOGGLE_TODO":
-      const stateIndex = state.findIndex(({ id }) => id === action.payload.id);
+      const stateIndex = state.findIndex(({ id }) => id === action.payload);
       state[stateIndex].completed = !state[stateIndex].completed;
       state[stateIndex].class =
-        state[stateIndex].completed === true ? "checked" : "unchecked";
+      state[stateIndex].completed === true ? "checked" : "unchecked";
       return [...state];
 
     default:

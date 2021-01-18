@@ -1,7 +1,7 @@
 import React from "react";
 import { Transition } from "react-transition-group";
 import { connect } from "react-redux";
-import addTask from "../store/actionCreators/addTask";
+import {addTask} from "../store/actionCreators"
 
 function Modal(props) {
   const [modalIsVisible, setVisible] = React.useState(false);
