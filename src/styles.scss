@@ -146,7 +146,8 @@ html {
 }
 
 .todo__checkbox:checked + .todo__task::before {
-  background: url("img/check.svg") no-repeat center;
+  // background: url("img/check.svg") no-repeat center;
+  background-color: #23A3FF;
 }
 
 .todo__button_delete{
@@ -204,7 +205,9 @@ html {
 
 .todo__buttons{
   display: flex;
-  width: (100 - 90vw);
+  padding-left: 70px;
+  width: 60px;
+  gap: 10px;
   justify-content: space-around;
 }
 
@@ -213,7 +216,7 @@ html {
 }
 
 .todo__button_change{
-  background-color: rgba(35, 163, 255, 0.6);
+  background-color: rgba(35, 163, 255, 1);
   color: white;
   border-radius: 5px;
 }
