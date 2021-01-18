@@ -23,7 +23,7 @@ function reducer(state, action) {
       const stateIndex = state.findIndex(({ id }) => id === action.payload);
       state[stateIndex].completed = !state[stateIndex].completed;
       state[stateIndex].class =
-      state[stateIndex].completed === true ? "checked" : "unchecked";
+        state[stateIndex].completed === true ? "checked" : "unchecked";
       return [...state];
 
     default:
