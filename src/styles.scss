@@ -146,7 +146,6 @@ html {
 }
 
 .todo__checkbox:checked + .todo__task::before {
-  // background: url("img/check.svg") no-repeat center;
   background-color: #23A3FF;
 }
 
