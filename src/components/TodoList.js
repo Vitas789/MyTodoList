@@ -1,4 +1,5 @@
 import React from "react";
+import cn from "classnames";
 import { Transition } from "react-transition-group";
 import { connect } from "react-redux";
 import { editTask } from "../store/actionCreators";
@@ -9,15 +10,20 @@ function TodoList(props) {
   const [formIsVisible, setVisible] = React.useState(false);
   const [value, setValue] = React.useState("");
 
+  let isChecked = props.completed;
+  let todoClass = cn("todo__task",{"checked":isChecked});
+
   return (
     <label className="todo__label" htmlFor={props.id} key={props.id}>
       <input
         className="todo__checkbox"
         type="checkbox"
         id={props.id}
-        onChange={() => props.toggleTodo(props.id)}
+        onChange={() => {
+          props.toggleTodo(props.id);
+        }}
       />
-      <span className={"todo__task " + props.class}>{props.value}</span>
+      <span className={todoClass}>{props.value}</span>
       <button
         className="todo__button todo__button_delete"
         onClick={() => props.removeTask(props.id)}

@@ -10,7 +10,7 @@ function Todo(props) {
         key={task.id}
         id={task.id}
         tasks={props.state}
-        class={task.class}
+        completed={task.completed}
       />
     );
   });
